@@ -1,0 +1,12 @@
+.testCss{
+    max-width: 1440px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.testCss div{
+    margin: 5px;
+}
