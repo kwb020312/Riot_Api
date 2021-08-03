@@ -7,11 +7,17 @@ function ChampionInfo() {
   const [loading, setLoading] = useState(false);
 
   const GetData = async () => {
-    const datas = await axios
+    let datas = await axios
       .get(
         "http://ddragon.leagueoflegends.com/cdn/11.15.1/data/ko_KR/champion.json"
       )
       .then((res) => res.data.data);
+      let testArr = [];
+      for (let i in datas) {
+        testArr.push(datas[i])
+      }
+
+      datas = testArr.sort((a,b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
 
     setData(datas);
     setLoading(true);
