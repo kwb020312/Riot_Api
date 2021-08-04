@@ -11,20 +11,19 @@ function ChampionInfo() {
   const params = new URLSearchParams(search);
   const keywords = params.get("id");
 
-  const GetData = async () => {
-    let datas = await axios
-      .get(
-        `http://ddragon.leagueoflegends.com/cdn/11.15.1/data/ko_KR/champion/${keywords}.json`
-      )
-      .then((res) => res.data.data);
-
-    setData(datas[keywords]);
-    setLoading(true);
-  };
-
   useEffect(() => {
+    const GetData = async () => {
+      let datas = await axios
+        .get(
+          `http://ddragon.leagueoflegends.com/cdn/11.15.1/data/ko_KR/champion/${keywords}.json`
+        )
+        .then((res) => res.data.data);
+
+      setData(datas[keywords]);
+      setLoading(true);
+    };
     GetData();
-  }, []);
+  }, [keywords]);
 
   const Tag = () => {
     let tag = [];

@@ -23,7 +23,7 @@ export default function SearchUser() {
   const [summoner, setSummoner] = useState("");
   const history = useHistory();
   const onHandleSubmit = useCallback(
-    () => history.push(`/search/${summoner}`),
+    () => history.push(`/search/summoner?userName=${summoner}`),
     [history, summoner]
   );
   const onHandleChangeName = (e) => setSummoner(e.target.value);

@@ -10,7 +10,7 @@ function App() {
     <>
       <Route exact={true} path="/" render={() => <Champion />} />
       <Route path="/info" render={() => <ChampionInfo />} />
-      <Route path="/search/:summoner" component={DetailUser} />
+      <Route path="/search/summoner" component={DetailUser} />
       <Route path="/search" exact={true} component={SearchUser} />
     </>
   );
