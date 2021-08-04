@@ -1,13 +1,15 @@
 import React from "react";
-import {Route} from "react-router-dom"
-import ChampionInfo from './component/ChampionInfo';
+import { Route } from "react-router-dom";
+import Champion from "./component/Champion";
+import ChampionInfo from "./component/ChampionInfo";
 
 function App() {
-  return(
+  return (
     <>
-      <Route exact={true} path='/' render={(() => < ChampionInfo/>)} />
+      <Route exact={true} path="/" render={() => <Champion />} />
+      <Route path="/info" render={() => <ChampionInfo />} />
     </>
-  )
+  );
 }
 
 export default App;
