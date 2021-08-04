@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../css/championInfo.css";
 
@@ -25,19 +26,17 @@ function ChampionInfo() {
     setLoading(true);
   };
 
-  const test = (i) => {
-    window.location.href = `/info?id=${i}`;
-  };
-
   const Champion = () => {
     let testArr = [];
     for (let i in data) {
       testArr.push(
-        <div key={i} onClick={() => test(i)}>
-          <img
-            src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/champion/${data[i].image.full}`}
-          ></img>
-        </div>
+        <Link to={`/info?id=${data[i].id}`}>
+          <div key={i}>
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/champion/${data[i].image.full}`}
+            ></img>
+          </div>
+        </Link>
       );
     }
 

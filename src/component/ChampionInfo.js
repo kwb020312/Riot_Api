@@ -14,17 +14,9 @@ function ChampionInfo() {
   const GetData = async () => {
     let datas = await axios
       .get(
-        "http://ddragon.leagueoflegends.com/cdn/11.15.1/data/ko_KR/champion.json"
+        `http://ddragon.leagueoflegends.com/cdn/11.15.1/data/ko_KR/champion/${keywords}.json`
       )
       .then((res) => res.data.data);
-    let testArr = [];
-    for (let i in datas) {
-      testArr.push(datas[i]);
-    }
-
-    datas = testArr.sort((a, b) =>
-      a.name < b.name ? -1 : a.name > b.name ? 1 : 0
-    );
 
     setData(datas[keywords]);
     setLoading(true);
@@ -39,6 +31,7 @@ function ChampionInfo() {
     data.tags.map((item) => tag.push(item + ""));
     return String(tag).replace(" ", ",");
   };
+
   const Blurb = (blurb) => {
     blurb = blurb.replaceAll(".", ".\n");
     blurb = blurb.split("\n").map((line) => {
@@ -68,15 +61,16 @@ function ChampionInfo() {
             <p>{Blurb(data.blurb)}</p>
           </div>
           <div>
-            <h2>
+            <h3>
               <p>AD : {data.info.attack}</p>
               <p>AP : {data.info.magic}</p>
               <p>DEF : {data.info.defense}</p>
               <p>난이도 : {data.info.difficulty}</p>
-            </h2>
-            <p>보조 : {data.partype}</p>
+            </h3>
           </div>
-          <div className="stats">
+          <div className="ChampionInfo_Stats">
+            <h1>스텟</h1>
+            <p>partype : {data.partype}</p>
             <p>HP | {data.stats.hp}</p>
             <p>레벨업당 HP | {data.stats.hpperlevel}</p>
             <p>MP | {data.stats.mp}</p>
@@ -91,16 +85,39 @@ function ChampionInfo() {
             <p>레벨업당 HP 재생 | {data.stats.hpregenperlevel}</p>
             <p>MP 재생 | {data.stats.mpregen}</p>
             <p>레벨업당 MP 재생 | {data.stats.mpregenperlevel}</p>
-            {/* <p>크리티컬 | {data.stats.crit}</p>
-            <p>레벨업당 크리티컬 | {data.stats.critperlevel}</p> */}
+            <p>크리티컬 | {data.stats.crit}</p>
+            <p>레벨업당 크리티컬 | {data.stats.critperlevel}</p>
             <p>공격력 | {data.stats.attackdamage}</p>
             <p>레벨업당 공격력 | {data.stats.attackdamageperlevel}</p>
             <p>공격속도 | {data.stats.attackspeed}</p>
             <p>레벨업당 공격속도 | {data.stats.attackspeedperlevel}%</p>
           </div>
+          <div className="ChampionInfo_Spells">
+            <h1>스킬</h1>
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/passive/${data.passive.image.full}`}
+              title={`P ${data.passive.name}\n${data.passive.description}`}
+            />
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[0].image.full}`}
+              title={`Q ${data.spells[0].name}\n${data.spells[0].description}`}
+            />
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[1].image.full}`}
+              title={`W ${data.spells[1].name}\n${data.spells[1].description}`}
+            />
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[2].image.full}`}
+              title={`E ${data.spells[2].name}\n${data.spells[2].description}`}
+            />
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[3].image.full}`}
+              title={`R ${data.spells[3].name}\n${data.spells[3].description}`}
+            />
+          </div>
         </div>
       ) : (
-        <></>
+        <>Loading...</>
       )}
     </>
   );
