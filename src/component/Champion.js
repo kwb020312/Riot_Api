@@ -30,7 +30,7 @@ function ChampionInfo() {
     let testArr = [];
     for (let i in data) {
       testArr.push(
-        <Link to={`/info?id=${data[i].id}`}>
+        <Link to={`/champion/info?id=${data[i].id}`}>
           <div key={i}>
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/champion/${data[i].image.full}`}
