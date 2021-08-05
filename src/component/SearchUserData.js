@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { TierImg } from "./tierImg"; 
+import "../css/SearchUserData.css"
 
 function SearchUserData() {
   const { userName } = useParams();
@@ -23,10 +25,9 @@ function SearchUserData() {
   useEffect(() => {
 
     const GetUSerInfo = async (id) => {
-      const getData = await axios.get(
-        `/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`
-      );
-      const data = getData.data;
+      const CallData = await axios.get(
+        `/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`);
+      const data = CallData.data;
       console.log(data);
       for (let i in data) {
         if (data[i].queueType === "RANKED_SOLO_5x5") {
@@ -39,12 +40,12 @@ function SearchUserData() {
     };
 
     const GetData = async () => {
-      const getData = await axios.get(
+      const CallData = await axios.get(
         `/lol/summoner/v4/summoners/by-name/${userName}?api_key=RGAPI-377a5043-697b-446e-b2f7-bf0edeedfe49`
       );
   
-      if(getData !== "" || getData !== undefined || getData !== null){
-        const data = getData.data;
+      if(CallData !== "" || CallData !== undefined || CallData !== null){
+        const data = CallData.data;
   
         setUserData(data);
         GetUSerInfo(data.id);
@@ -69,12 +70,13 @@ function SearchUserData() {
                     <h1>솔로 랭크</h1>
               {soloRankData ? (
                 <>
-                    {soloRankData.tier + " " + soloRankData.rank}
+                    <p>{soloRankData.tier + " " + soloRankData.rank}</p>
+                    <p><img src={TierImg(soloRankData.tier)} alt={soloRankData.tier} className='SearchUserData_TierImg'/></p>
                     <p>플레이수 : {soloRankData.wins + soloRankData.losses}</p>
                     <p>승 : {soloRankData.wins}</p>
                     <p>패 : {soloRankData.losses}</p>
                     <p>
-                      승률 :{" "}
+                      승률 :
                       {WinPercent(soloRankData.wins, soloRankData.losses)}%
                     </p>
                  
@@ -87,7 +89,8 @@ function SearchUserData() {
                     <h1>자유랭</h1>
               {freeRankData ? (
                 <>
-                    {freeRankData.tier + " " + freeRankData.rank}
+                    <p>{freeRankData.tier + " " + freeRankData.rank}</p>
+                    <p><img src={TierImg(freeRankData.tier)} alt={freeRankData.tier} className='SearchUserData_TierImg'/></p>
                     <p>플레이수 : {freeRankData.wins + freeRankData.losses}</p>
                     <p>승 : {freeRankData.wins}</p>
                     <p>패 : {freeRankData.losses}</p>
