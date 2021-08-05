@@ -8,7 +8,7 @@ function App() {
   return(
     <>
       <Route exact={true} path='/' render={(() => < Main/>)} />
-      <Route path='/userInfo/:userName' render={(() => < SearchUserData/>)} />
+      <Route path='/summoner/:userName' render={(() => < SearchUserData/>)} />
     </>
   )
 }

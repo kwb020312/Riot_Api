@@ -15,7 +15,7 @@ function Main() {
             console.log(userName);
           }}
         />
-        <Link to={`/userInfo/${userName}`}>
+        <Link to={`/summoner/${userName}`}>
           <input type="button" value="검색" />
         </Link>
       </div>
