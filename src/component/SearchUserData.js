@@ -41,12 +41,14 @@ function SearchUserData() {
 
     const GetData = async () => {
       const CallData = await axios.get(
-        `/lol/summoner/v4/summoners/by-name/${userName}?api_key=RGAPI-377a5043-697b-446e-b2f7-bf0edeedfe49`
+        `/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
       );
   
       if(CallData !== "" || CallData !== undefined || CallData !== null){
         const data = CallData.data;
-  
+        
+        console.log(data)
+
         setUserData(data);
         GetUSerInfo(data.id);
       }else{
@@ -62,8 +64,8 @@ function SearchUserData() {
       <div>
         {loading ? (
           <>
-            {console.log(userData.name)}
-            {userData.name}
+            <img src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/profileicon/${userData.profileIconId}.png`} className='SearchUserData_userIconImg'></img>
+            <h1>{userData.name}</h1>
             <br></br>
             <div>
             <div>

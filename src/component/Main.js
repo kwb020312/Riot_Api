@@ -12,7 +12,6 @@ function Main() {
           type="text"
           onChange={(e) => {
             setUserName(e.target.value);
-            console.log(userName);
           }}
         />
         <Link to={`/summoner/${userName}`}>
