@@ -11,20 +11,19 @@ function ChampionInfo() {
   const params = new URLSearchParams(search);
   const keywords = params.get("id");
 
-  const GetData = async () => {
-    let datas = await axios
-      .get(
-        `http://ddragon.leagueoflegends.com/cdn/11.15.1/data/ko_KR/champion/${keywords}.json`
-      )
-      .then((res) => res.data.data);
-
-    setData(datas[keywords]);
-    setLoading(true);
-  };
-
   useEffect(() => {
+    const GetData = async () => {
+      let datas = await axios
+        .get(
+          `http://ddragon.leagueoflegends.com/cdn/11.15.1/data/ko_KR/champion/${keywords}.json`
+        )
+        .then((res) => res.data.data);
+
+      setData(datas[keywords]);
+      setLoading(true);
+    };
     GetData();
-  }, []);
+  }, [keywords]);
 
   const Tag = () => {
     let tag = [];
@@ -34,9 +33,9 @@ function ChampionInfo() {
 
   const Blurb = (blurb) => {
     blurb = blurb.replaceAll(".", ".\n");
-    blurb = blurb.split("\n").map((line) => {
+    blurb = blurb.split("\n").map((line, index) => {
       return (
-        <span>
+        <span key={index}>
           {line}
           <br />
         </span>
@@ -52,6 +51,7 @@ function ChampionInfo() {
           <div>
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/champion/${data.image.full}`}
+              alt="Champion"
             ></img>
             <h1>
               {data.name}({data.id})
@@ -60,7 +60,7 @@ function ChampionInfo() {
             <h3>{data.title}</h3>
             <p>{Blurb(data.blurb)}</p>
           </div>
-          <div>
+          <div className="ChampionInfo_Info">
             <h3>
               <p>AD : {data.info.attack}</p>
               <p>AP : {data.info.magic}</p>
@@ -97,22 +97,27 @@ function ChampionInfo() {
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/passive/${data.passive.image.full}`}
               title={`P ${data.passive.name}\n${data.passive.description}`}
+              alt="P"
             />
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[0].image.full}`}
               title={`Q ${data.spells[0].name}\n${data.spells[0].description}`}
+              alt="Q"
             />
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[1].image.full}`}
               title={`W ${data.spells[1].name}\n${data.spells[1].description}`}
+              alt="W"
             />
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[2].image.full}`}
               title={`E ${data.spells[2].name}\n${data.spells[2].description}`}
+              alt="E"
             />
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[3].image.full}`}
               title={`R ${data.spells[3].name}\n${data.spells[3].description}`}
+              alt="R"
             />
           </div>
         </div>
