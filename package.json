@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy" : "https://kr.api.riotgames.com/",
+  "proxy" : "https://kr.api.riotgames.com",
   "eslintConfig": {
     "extends": [
       "react-app",
