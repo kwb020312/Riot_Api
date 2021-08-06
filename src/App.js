@@ -8,11 +8,12 @@ import SearchUserData from './component/SearchUserData';
 
 function App() {
   return (
+    
     <>
-      <Route exact={true} path='/' render={(() => < Main/>)} />
-      <Route path='/summoner/:userName' render={(() => < SearchUserData/>)} />
-      <Route path='/champion' exact={true} render={(() => <Champion />)} />
-      <Route path='/champion/info' render={(() => <ChampionInfo />)} />
+      <Route exact={true} path='/' component = {Main} />
+      <Route path='/summoner/:userName' component = {SearchUserData} />
+      <Route path='/champion' exact={true} component = {Champion} />
+      <Route path='/champion/info' component = {ChampionInfo} />
     </>
   );
 }
