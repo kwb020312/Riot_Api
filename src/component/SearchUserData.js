@@ -24,9 +24,16 @@ function SearchUserData() {
 
   useEffect(() => {
 
+    const GetMatchData = async (ppuid) => {
+      const CallData = await axios.get(`/asia/lol/match/v5/matches/by-puuid/${ppuid}/ids?start=0&count=20&api_key=${process.env.REACT_APP_API_KEY}`);
+      const data = CallData.data;
+
+      console.log(data)
+    }
+
     const GetUSerInfo = async (id) => {
       const CallData = await axios.get(
-        `/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`);
+        `/kr/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`);
       const data = CallData.data;
       console.log(data);
       for (let i in data) {
@@ -41,7 +48,7 @@ function SearchUserData() {
 
     const GetData = async () => {
       const CallData = await axios.get(
-        `/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
+        `/kr/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
       );
   
       if(CallData !== "" || CallData !== undefined || CallData !== null){
@@ -51,6 +58,7 @@ function SearchUserData() {
 
         setUserData(data);
         GetUSerInfo(data.id);
+        GetMatchData(data.ppuid);
       }else{
         setUserData(undefined);
         console.log("asd")
