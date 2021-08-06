@@ -8,12 +8,13 @@ import "../setupProxy";
 function SearchUserData() {
   const { userName } = useParams();
 
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(null);
   const [soloRankData, setSoloRankData] = useState();
   const [freeRankData, setFreeRankData] = useState();
   const [loading, setLoading] = useState(false);
   const matchData = [];
 
+  // 승률 구하기
   const WinPercent = (wins, losses) => {
     let percent = (wins / (wins + losses)) * 100;
 
@@ -21,21 +22,26 @@ function SearchUserData() {
   };
 
   useEffect(() => {
+    // 경기 정보 가져오기
     const GetMatchData = async (matchId) => {
-      const CallData = await axios.get(
-        `/lol/match/v5/matches/${matchId}?api_key=${process.env.REACT_APP_API_KEY}`
-      );
+
+        const CallData = await axios.get(
+          `/lol/match/v5/matches/${matchId}?api_key=${process.env.REACT_APP_API_KEY}`
+        );
+    
       const data = CallData.data;
+
 
       matchData.push(data);
 
       console.log(data);
     };
 
+    // 유저가 플레이한 경기 정보 가져오기
     const GetUserMatchData = async (puuid) => {
       const CallData = await axios.get(
         `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${process.env.REACT_APP_API_KEY}`
-      );
+      )
       const data = CallData.data;
 
       for (let i = 0; i < 5; i++) {
@@ -46,6 +52,7 @@ function SearchUserData() {
       setLoading(true);
     };
 
+    // 유저의 상세정보가져오기
     const GetUSerInfo = async (id) => {
       const CallData = await axios.get(
         `/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`
@@ -61,6 +68,7 @@ function SearchUserData() {
       }
     };
 
+    // 유저의 id등나 이름 가져오기
     const GetData = async () => {
       const CallData = await axios.get(
         `/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
@@ -149,7 +157,9 @@ function SearchUserData() {
             </div>
           </>
         ) : (
-          <h1>loading</h1>
+          <h1>loading
+            {console.log(userData)}
+          </h1>
         )}
       </div>
     </div>
