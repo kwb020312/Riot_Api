@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { TierImg } from "./tierImg"; 
-import "../css/SearchUserData.css"
+import "../css/SearchUserData.css";
+import "../setupProxy";
 
 function SearchUserData() {
   const { userName } = useParams();
@@ -24,16 +25,25 @@ function SearchUserData() {
 
   useEffect(() => {
 
-    const GetMatchData = async (ppuid) => {
-      const CallData = await axios.get(`/asia/lol/match/v5/matches/by-puuid/${ppuid}/ids?start=0&count=20&api_key=${process.env.REACT_APP_API_KEY}`);
+    const GetMatchData = async (matchId) => {
+      const CallData = await axios.get(`/lol/match/v5/matches/${matchId}?api_key=${process.env.REACT_APP_API_KEY}`);
       const data = CallData.data;
+
+      console.log(data);
+    } 
+
+    const GetUserMatchData = async (puuid) => {
+      const CallData = await axios.get(`/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${process.env.REACT_APP_API_KEY}`);
+      const data = CallData.data;
+
+      GetMatchData(data[0])
 
       console.log(data)
     }
 
     const GetUSerInfo = async (id) => {
       const CallData = await axios.get(
-        `/kr/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`);
+        `/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`);
       const data = CallData.data;
       console.log(data);
       for (let i in data) {
@@ -48,7 +58,7 @@ function SearchUserData() {
 
     const GetData = async () => {
       const CallData = await axios.get(
-        `/kr/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
+        `/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
       );
   
       if(CallData !== "" || CallData !== undefined || CallData !== null){
@@ -58,7 +68,7 @@ function SearchUserData() {
 
         setUserData(data);
         GetUSerInfo(data.id);
-        GetMatchData(data.ppuid);
+        GetUserMatchData(data.puuid);
       }else{
         setUserData(undefined);
         console.log("asd")
@@ -96,7 +106,7 @@ function SearchUserData() {
               )}
               </div>
               <div>
-                    <h1>자유랭</h1>
+                    <h1>자유 랭크</h1>
               {freeRankData ? (
                 <>
                     <p>{freeRankData.tier + " " + freeRankData.rank}</p>
