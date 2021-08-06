@@ -25,16 +25,10 @@ function SearchUserData() {
     // 경기 정보 가져오기
     const GetMatchData = async (matchId) => {
 
-      let CallData
-
-      try{
         const CallData = await axios.get(
           `/lol/match/v5/matches/${matchId}?api_key=${process.env.REACT_APP_API_KEY}`
         );
-      } catch (e) {
-        console.log(e.massage);
-      }
-       
+    
       const data = CallData.data;
 
 
