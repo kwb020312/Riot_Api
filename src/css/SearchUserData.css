@@ -17,6 +17,7 @@
 }
 
 .SearchUserData_UserInfoHeader{
+    min-width: 300px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -34,4 +35,12 @@
 
 .SearchUserData_UserTierInfo *{
     margin: 0;
+}
+
+.SearchUserData_NoneUser{
+    text-align: center;
+}
+
+.SearchUserData_Loading{
+    text-align: center;
 }
