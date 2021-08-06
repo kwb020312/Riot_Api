@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Champion from "./component/Champion";
+import Champion from "./component/ChampionList";
 import ChampionInfo from "./component/ChampionInfo";
 
 function App() {
