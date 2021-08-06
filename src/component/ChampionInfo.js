@@ -44,6 +44,22 @@ function ChampionInfo() {
     return blurb;
   };
 
+  const Spells = () => {
+    const spellName = ["Q", "W", "E", "R"];
+    let spells = [];
+    for (let i = 0; i < 4; i++) {
+      spells.push(
+        <img
+          src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[i].image.full}`}
+          title={`${spellName[i]} ${data.spells[i].name}\n${data.spells[i].description}`}
+          alt={spellName[i]}
+          key={i}
+        />
+      );
+    }
+    return spells;
+  };
+
   return (
     <>
       {loading ? (
@@ -99,26 +115,7 @@ function ChampionInfo() {
               title={`P ${data.passive.name}\n${data.passive.description}`}
               alt="P"
             />
-            <img
-              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[0].image.full}`}
-              title={`Q ${data.spells[0].name}\n${data.spells[0].description}`}
-              alt="Q"
-            />
-            <img
-              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[1].image.full}`}
-              title={`W ${data.spells[1].name}\n${data.spells[1].description}`}
-              alt="W"
-            />
-            <img
-              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[2].image.full}`}
-              title={`E ${data.spells[2].name}\n${data.spells[2].description}`}
-              alt="E"
-            />
-            <img
-              src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[3].image.full}`}
-              title={`R ${data.spells[3].name}\n${data.spells[3].description}`}
-              alt="R"
-            />
+            {Spells()}
           </div>
         </div>
       ) : (
