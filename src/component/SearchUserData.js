@@ -70,21 +70,17 @@ function SearchUserData() {
 
     // 유저의 id등나 이름 가져오기
     const GetData = async () => {
-      const CallData = await axios.get(
-        `/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
-      );
-
-      if (CallData !== "" || CallData !== undefined || CallData !== null) {
+      try {
+        const CallData = await axios.get(
+          `/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
+        );
         const data = CallData.data;
-
-        console.log(data);
 
         setUserData(data);
         GetUSerInfo(data.id);
         GetUserMatchData(data.puuid);
-      } else {
+      } catch (error){
         setUserData(undefined);
-        console.log("asd");
       }
     };
     GetData();
@@ -102,8 +98,6 @@ function SearchUserData() {
               <h1>{userData.name}</h1>
               <br></br>
             </div>
-
-            <div>
               <div className="SearchUserData_UserTierInfoContainer">
                 <div className="SearchUserData_UserTierInfo">
                 <h1>솔로 랭크</h1>
@@ -154,13 +148,12 @@ function SearchUserData() {
                 )}
               </div>
             </div>
-            </div>
           </>
-        ) : (
-          <h1>loading
-            {console.log(userData)}
-          </h1>
-        )}
+        ) : 
+        (<>
+          {userData === undefined ? (<h1 className="SearchUserData_NoneUser">없는 사용자 입니다...</h1>) : (<h1 className="SearchUserData_Loading">LOADING</h1>)}
+        </>)
+        }
       </div>
     </div>
   );
