@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import { TierImg } from "./tierImg"; 
-import "../css/SearchUserData.css"
+import { TierImg } from "./tierImg";
+import "../css/SearchUserData.css";
+import "../setupProxy";
 
 function SearchUserData() {
   const { userName } = useParams();
@@ -11,8 +12,7 @@ function SearchUserData() {
   const [soloRankData, setSoloRankData] = useState();
   const [freeRankData, setFreeRankData] = useState();
   const [loading, setLoading] = useState(false);
-
-  
+  const matchData = [];
 
   const WinPercent = (wins, losses) => {
     let percent = (wins / (wins + losses)) * 100;
@@ -20,13 +20,36 @@ function SearchUserData() {
     return percent.toFixed(1);
   };
 
-  
-
   useEffect(() => {
+    const GetMatchData = async (matchId) => {
+      const CallData = await axios.get(
+        `/lol/match/v5/matches/${matchId}?api_key=${process.env.REACT_APP_API_KEY}`
+      );
+      const data = CallData.data;
+
+      matchData.push(data);
+
+      console.log(data);
+    };
+
+    const GetUserMatchData = async (puuid) => {
+      const CallData = await axios.get(
+        `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${process.env.REACT_APP_API_KEY}`
+      );
+      const data = CallData.data;
+
+      for (let i = 0; i < 5; i++) {
+        GetMatchData(data[i]);
+      }
+
+      console.log(data);
+      setLoading(true);
+    };
 
     const GetUSerInfo = async (id) => {
       const CallData = await axios.get(
-        `/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`);
+        `/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`
+      );
       const data = CallData.data;
       console.log(data);
       for (let i in data) {
@@ -36,61 +59,80 @@ function SearchUserData() {
           setFreeRankData(data[i]);
         }
       }
-      setLoading(true);
     };
 
     const GetData = async () => {
       const CallData = await axios.get(
-        `/lol/summoner/v4/summoners/by-name/${userName}?api_key=RGAPI-377a5043-697b-446e-b2f7-bf0edeedfe49`
+        `/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
       );
-  
-      if(CallData !== "" || CallData !== undefined || CallData !== null){
+
+      if (CallData !== "" || CallData !== undefined || CallData !== null) {
         const data = CallData.data;
-  
+
+        console.log(data);
+
         setUserData(data);
         GetUSerInfo(data.id);
-      }else{
+        GetUserMatchData(data.puuid);
+      } else {
         setUserData(undefined);
-        console.log("asd")
+        console.log("asd");
       }
-  
     };
     GetData();
   }, []);
   return (
-    <>
-      <div>
+    <div className="SearchUserData_Container">
+      <div className="SearchUserData_UserInfoContainer">
         {loading ? (
           <>
-            {console.log(userData.name)}
-            {userData.name}
-            <br></br>
+            <div className="SearchUserData_UserInfoHeader"> 
+              <img
+                src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/profileicon/${userData.profileIconId}.png`}
+                className="SearchUserData_userIconImg"
+              ></img>
+              <h1>{userData.name}</h1>
+              <br></br>
+            </div>
+
             <div>
-            <div>
-                    <h1>솔로 랭크</h1>
-              {soloRankData ? (
-                <>
+              <div className="SearchUserData_UserTierInfoContainer">
+                <div className="SearchUserData_UserTierInfo">
+                <h1>솔로 랭크</h1>
+                {soloRankData ? (
+                  <>
                     <p>{soloRankData.tier + " " + soloRankData.rank}</p>
-                    <p><img src={TierImg(soloRankData.tier)} alt={soloRankData.tier} className='SearchUserData_TierImg'/></p>
+                    <p>
+                      <img
+                        src={TierImg(soloRankData.tier)}
+                        alt={soloRankData.tier}
+                        className="SearchUserData_TierImg"
+                      />
+                    </p>
                     <p>플레이수 : {soloRankData.wins + soloRankData.losses}</p>
                     <p>승 : {soloRankData.wins}</p>
                     <p>패 : {soloRankData.losses}</p>
                     <p>
-                      승률 :
-                      {WinPercent(soloRankData.wins, soloRankData.losses)}%
+                      승률 :{WinPercent(soloRankData.wins, soloRankData.losses)}
+                      %
                     </p>
-                 
-                </>
-              ) : (
-                <h1>전적 없음.</h1>
-              )}
+                  </>
+                ) : (
+                  <h1>전적 없음.</h1>
+                )}
               </div>
-              <div>
-                    <h1>자유랭</h1>
-              {freeRankData ? (
-                <>
+              <div className="SearchUserData_UserTierInfo">
+                <h1>자유 랭크</h1>
+                {freeRankData ? (
+                  <>
                     <p>{freeRankData.tier + " " + freeRankData.rank}</p>
-                    <p><img src={TierImg(freeRankData.tier)} alt={freeRankData.tier} className='SearchUserData_TierImg'/></p>
+                    <p>
+                      <img
+                        src={TierImg(freeRankData.tier)}
+                        alt={freeRankData.tier}
+                        className="SearchUserData_TierImg"
+                      />
+                    </p>
                     <p>플레이수 : {freeRankData.wins + freeRankData.losses}</p>
                     <p>승 : {freeRankData.wins}</p>
                     <p>패 : {freeRankData.losses}</p>
@@ -98,19 +140,19 @@ function SearchUserData() {
                       승률 :{" "}
                       {WinPercent(freeRankData.wins, freeRankData.losses)}%
                     </p>
-                  
-                </>
-              ) : (
-                <h1>전적 없음.</h1>
-              )}
+                  </>
+                ) : (
+                  <h1>전적 없음.</h1>
+                )}
               </div>
+            </div>
             </div>
           </>
         ) : (
           <h1>loading</h1>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
