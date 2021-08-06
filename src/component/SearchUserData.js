@@ -12,6 +12,7 @@ function SearchUserData() {
   const [soloRankData, setSoloRankData] = useState();
   const [freeRankData, setFreeRankData] = useState();
   const [loading, setLoading] = useState(false);
+  const matchData = [];
 
   
 
@@ -29,6 +30,8 @@ function SearchUserData() {
       const CallData = await axios.get(`/lol/match/v5/matches/${matchId}?api_key=${process.env.REACT_APP_API_KEY}`);
       const data = CallData.data;
 
+      matchData.push(data);
+
       console.log(data);
     } 
 
@@ -36,9 +39,13 @@ function SearchUserData() {
       const CallData = await axios.get(`/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${process.env.REACT_APP_API_KEY}`);
       const data = CallData.data;
 
-      GetMatchData(data[0])
-
+      for(let i = 0 ; i < 5 ; i++){
+        GetMatchData(data[i]);
+      }
+      
+      
       console.log(data)
+      setLoading(true);
     }
 
     const GetUSerInfo = async (id) => {
@@ -53,7 +60,7 @@ function SearchUserData() {
           setFreeRankData(data[i]);
         }
       }
-      setLoading(true);
+      
     };
 
     const GetData = async () => {
