@@ -2,3 +2,36 @@
     width: 80px;
     height: 80px;
 }
+
+.SearchUserData_Container{
+    width: 100%;
+    max-width: 1440px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.SearchUserData_UserInfoContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.SearchUserData_UserInfoHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.SearchUserData_UserTierInfoContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.SearchUserData_UserTierInfo{
+    margin: 10px;
+}
+
+.SearchUserData_UserTierInfo *{
+    margin: 0;
+}
