@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { TierImg } from "./tierImg";
 import "../css/SearchUserData.css";
-import "../setupProxy";
 
 function SearchUserData() {
   const { userName } = useParams();
@@ -13,7 +12,7 @@ function SearchUserData() {
   const [freeRankData, setFreeRankData] = useState();
   const [loading, setLoading] = useState(false);
   const [matchData, setMachData] = useState();
-
+  const [matchId,setMatchId] = useState();
   // 승률 구하기
   const WinPercent = (wins, losses) => {
     let percent = (wins / (wins + losses)) * 100;
@@ -32,7 +31,7 @@ function SearchUserData() {
 
       setMachData(data);
       console.log(data);
-      setLoading(true);
+      
     };
 
     // 유저가 플레이한 경기 정보 가져오기
@@ -42,11 +41,8 @@ function SearchUserData() {
       );
       const data = CallData.data;
 
-      for (let i = 0; i < 1; i++) {
-        GetMatchData(data[i]);
-      }
-
-      console.log(data);
+      setMatchId(data);
+      setLoading(true);
     };
 
     // 유저의 상세정보가져오기
@@ -155,34 +151,7 @@ function SearchUserData() {
               </div>
             </div>
             <div className="SearchUserData_MatchContainer">
-              <div className="SearchUserData_MatchContainer">
-                {matchData.info.participants.map((x) => {
-                  if (x.summonerName === userData.name) {
-                    console.log(x);
-                    let userDataArr = [];
-
-                    userDataArr.push(
-                    <>
-                    <p>{x.summonerName}</p>
-                    <p>{x.kills} / {x.deaths} / {x.assists}</p>
-                    <p>{
-                      matchData.info.teams.map(y => {
-                        if(x.teamId === y.teamId){
-                          if(y.win){
-                            return "승리"
-                          }else{
-                            return "패배"
-                          }
-                        }
-                      })
-                      }</p>
-                    </>
-                    )
-
-                    return userDataArr
-                  }
-                })}
-              </div>
+              
             </div>
           </div>
         </>
