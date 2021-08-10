@@ -18,21 +18,24 @@ function SearchUserData() {
     let percent = (wins / (wins + losses)) * 100;
 
     return percent.toFixed(1);
+
+  };
+
+  // 경기 정보 가져오기
+  const GetMatchData = async (matchId) => {
+    const CallData = await axios.get(
+      `/lol/match/v5/matches/${matchId}?api_key=${process.env.REACT_APP_API_KEY}`
+    );
+
+    const data = CallData.data;
+
+    setMachData(data);
+    console.log(data);
+    
   };
 
   useEffect(() => {
-    // 경기 정보 가져오기
-    const GetMatchData = async (matchId) => {
-      const CallData = await axios.get(
-        `/lol/match/v5/matches/${matchId}?api_key=${process.env.REACT_APP_API_KEY}`
-      );
-
-      const data = CallData.data;
-
-      setMachData(data);
-      console.log(data);
-      
-    };
+    
 
     // 유저가 플레이한 경기 정보 가져오기
     const GetUserMatchData = async (puuid) => {
@@ -151,7 +154,7 @@ function SearchUserData() {
               </div>
             </div>
             <div className="SearchUserData_MatchContainer">
-              
+                  {(GetMatchData(matchId))}
             </div>
           </div>
         </>
