@@ -78,6 +78,10 @@
 /* 검색한 유저의 경기정보 */
 .SearchUserData_MatchContainer{
     width: 100%;
-    height: 200px;
     border: 1px solid black;
+}
+
+.SearchUserData_Match{
+    padding: 10px;
+    border: 1px solid gray;
 }

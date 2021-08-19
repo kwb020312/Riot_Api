@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 
 function Main() {
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState("");
 
   return (
     <>
