@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import {Link} from "react-router-dom";
 import { useParams } from "react-router";
 import { TierImg } from "./tierImg";
@@ -9,7 +8,6 @@ import "../css/SearchUserData.css";
 
 function SearchUserData() {
   const { userName } = useParams();
-
 
   const [userData, setUserData] = useState(null);
   const [soloRankData, setSoloRankData] = useState();
@@ -45,6 +43,7 @@ function SearchUserData() {
         );
       } else {
         for (let cnt = 0; cnt < matchData.length; cnt++) {
+          console.log(matchData[cnt]);
           matchInfo.push(
             <UserMatchData
               key={cnt}
