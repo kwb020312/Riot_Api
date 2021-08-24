@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 import "../css/championInfo.css";
 
 function ChampionInfo() {
   const [data, setData] = useState();
+  const [userName, setUserName] = useState();
   const [loading, setLoading] = useState(false);
 
   const current = decodeURI(window.location.href);
@@ -47,6 +49,26 @@ function ChampionInfo() {
   return (
     <>
       {loading ? (
+        <>
+        <div className="Main_Header">
+      <input
+              type="text"
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.keyCode === 13) {
+                  document.location.href = `/summoner/${userName}`;
+                }
+              }}
+              placeholder="사용자명"
+              className="Main_searchUser_Input"
+            />
+          <Link to="/champion">
+            <button>챔피언 목록</button>
+          </Link>
+          <button>커뮤니티</button>
+        </div>
         <div className="ChampionInfo">
           <div>
             <img
@@ -115,6 +137,7 @@ function ChampionInfo() {
             />
           </div>
         </div>
+        </>
       ) : (
         <>Loading...</>
       )}

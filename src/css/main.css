@@ -17,8 +17,11 @@ body{
 /* 헤더 */
 .Main_Header
 {
+    position: sticky;
+    top : 0px;
     width: 100%;
     height: 5vh;
+    background-color: #C4DEFF;
     border-bottom: 2px solid #b2c9e7;
     text-align: right;
 }

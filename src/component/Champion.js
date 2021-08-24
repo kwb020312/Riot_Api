@@ -5,6 +5,7 @@ import "../css/championInfo.css";
 
 function ChampionInfo() {
   const [data, setData] = useState();
+  const [userName , setUserName] = useState("");
   const [loading, setLoading] = useState(false);
 
   const GetData = async () => {
@@ -49,7 +50,30 @@ function ChampionInfo() {
 
   return (
     <>
-      {loading ? <div className="ChampionContainer">{Champion()}</div> : <></>}
+      {loading ? 
+      <>
+      <div className="Main_Header">
+      <input
+              type="text"
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.keyCode === 13) {
+                  document.location.href = `/summoner/${userName}`;
+                }
+              }}
+              placeholder="사용자명"
+              className="Main_searchUser_Input"
+            />
+          <Link to="/champion">
+            <button>챔피언 목록</button>
+          </Link>
+          <button>커뮤니티</button>
+        </div>
+      <div className="ChampionContainer">{Champion()}
+      </div> 
+      </> : <></>}
     </>
   );
 }
