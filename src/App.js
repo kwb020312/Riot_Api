@@ -1,6 +1,7 @@
 import React from "react";
 
-import {Route} from "react-router-dom"
+import {Route} from "react-router"
+// import Redux from "./reduxTest";
 import Champion from './component/Champion';
 import ChampionInfo from './component/ChampionInfo';
 import Main from './component/Main';
