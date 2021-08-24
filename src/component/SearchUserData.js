@@ -8,7 +8,8 @@ import "../css/SearchUserData.css";
 
 function SearchUserData() {
   const { userName } = useParams();
-
+  
+  const { userNames,setUserNames} = useState();
   const [userData, setUserData] = useState(null);
   const [soloRankData, setSoloRankData] = useState();
   const [freeRankData, setFreeRankData] = useState();
@@ -22,7 +23,6 @@ function SearchUserData() {
   };
 
   const GetUserInfo = async () => {
-    console.log(userName)
 
     const data = await GetData(userName);
     setUserData(data);
@@ -67,7 +67,19 @@ function SearchUserData() {
       {loading ? (
         <>
         <div className="Main_Header">
-          <button>전적 검색</button>
+      <input
+              type="text"
+              onChange={(e) => {
+                setUserNames(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.keyCode === 13) {
+                  document.location.href = `/summoner/${userNames}`;
+                }
+              }}
+              placeholder="사용자명"
+              className="Main_searchUser_Input"
+            />
           <Link to="/champion">
             <button>챔피언 목록</button>
           </Link>
