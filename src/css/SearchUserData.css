@@ -1,23 +1,38 @@
+/* 모든 태그들 */
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+/* 바디 */
+body{
+    background-color: #C4DEFF		;
+}
+
 /* 유저 아이콘, 티어 아이콘 */
 .SearchUserData_TierImg , .SearchUserData_userIconImg{
     width: 80px;
     height: 80px;
+    border-radius: 15px;
 }
 
 /* 모든걸 묶고있는 컨테이너 */
 .SearchUserData_Container{
-    width: 100%;
+    max-width: 1440px;
+    border: #1d59a7 1px solid;
     padding: 10px;
-    max-width: 1200px;
-    height: auto;
+    height: 80vh;
     margin: 0 auto;
 }
 
 /* 유저의 정보 컨테이너 */
 .SearchUserData_UserInfoContainer{
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 /* 유저의 정보의 헤더 */
@@ -43,9 +58,23 @@
 /* 유저의 티어 컨테이너 */
 .SearchUserData_UserTierInfoContainer{
     width: 100%;
+    max-width: 1200px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    margin: 20px auto;
+    background-color: #dee4ec;
+    border: #1d59a7 1px solid;
+
+}
+
+.SearchUserData_SoloTierInfo{
+    width: 50%;
+    margin:0 40px;
+    border-right: #1d59a7 1px solid;
+}
+
+.SearchUserData_FreeTierInfo{
+    width: 50%;
+    margin: 0 40px;
 }
 
 /* 유저의 티어 정보 */
@@ -71,8 +100,9 @@
 /* 검색한 유저의 경기정보 컨테이너 */
 .SearchUserData_MatchContainer{
     width: 100%;
-    max-width: 1438px;
+    max-width: 1200px;
     min-width: 200px;
+    margin: 0 auto;
 }
 
 /* 검색한 유저의 경기정보 */

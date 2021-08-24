@@ -2,6 +2,7 @@ import axios from "axios";
 
 // 유저의 id등나 이름 가져오기
 export const GetData = async (userName) => {
+  console.log(userName);
   try {
     const CallData = await axios.get(
       `/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
@@ -44,16 +45,20 @@ export const GetUserMatchData = async (puuid) => {
     );
     const data = CallData.data;
 
-    let matchId = [data[0],data[1]]
+      console.log(data)
 
+    let matchId = data;
+    
     for (let cnt = 0; cnt < 2; cnt++) {
-      const CallData = await axios.get(
-        `/lol/match/v5/matches/${matchId[cnt]}?api_key=${process.env.REACT_APP_API_KEY}`
-      );
-
-      const data = CallData.data;
-
-      matchData.push(data);
+      if(matchId[cnt] !== undefined){
+        const CallData = await axios.get(
+          `/lol/match/v5/matches/${matchId[cnt]}?api_key=${process.env.REACT_APP_API_KEY}`
+        );
+  
+        const data = CallData.data;
+  
+        matchData.push(data);
+      }
     }
 
     return matchData;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 import { useParams } from "react-router";
 import { TierImg } from "./tierImg";
 import UserMatchData from "./UserMatchData";
@@ -8,6 +9,7 @@ import "../css/SearchUserData.css";
 
 function SearchUserData() {
   const { userName } = useParams();
+
 
   const [userData, setUserData] = useState(null);
   const [soloRankData, setSoloRankData] = useState();
@@ -22,6 +24,8 @@ function SearchUserData() {
   };
 
   const GetUserInfo = async () => {
+    console.log(userName)
+
     const data = await GetData(userName);
     setUserData(data);
     if (data !== undefined) {
@@ -63,6 +67,13 @@ function SearchUserData() {
     <>
       {loading ? (
         <>
+        <div className="Main_Header">
+          <button>전적 검색</button>
+          <Link to="/champion">
+            <button>챔피언 목록</button>
+          </Link>
+          <button>커뮤니티</button>
+        </div>
           {userData !== undefined ? (
             <div className="SearchUserData_Container">
               <div className="SearchUserData_UserInfoContainer">
@@ -76,8 +87,9 @@ function SearchUserData() {
                     <h1>레벨 : {userData.summonerLevel}</h1>
                   </div>
                 </div>
-                <div className="SearchUserData_UserTierInfoContainer">
-                  <div className="SearchUserData_UserTierInfo">
+              </div>
+              <div className="SearchUserData_UserTierInfoContainer">
+                  <div className="SearchUserData_SoloTierInfo">
                     <h1>솔로 랭크</h1>
                     {soloRankData ? (
                       <>
@@ -89,11 +101,7 @@ function SearchUserData() {
                             className="SearchUserData_TierImg"
                           />
                         </p>
-                        <p>
-                          플레이수 : {soloRankData.wins + soloRankData.losses}
-                        </p>
-                        <p>승 : {soloRankData.wins}</p>
-                        <p>패 : {soloRankData.losses}</p>
+                        <p>{soloRankData.wins}승/{soloRankData.losses}패</p>
                         <p>
                           승률 :
                           {WinPercent(soloRankData.wins, soloRankData.losses)}%
@@ -102,8 +110,8 @@ function SearchUserData() {
                     ) : (
                       <h1>전적 없음.</h1>
                     )}
-                  </div>
-                  <div className="SearchUserData_UserTierInfo">
+                    </div>
+                  <div className="SearchUserData_FreeTierInfo">
                     <h1>자유 랭크</h1>
                     {freeRankData ? (
                       <>
@@ -115,11 +123,7 @@ function SearchUserData() {
                             className="SearchUserData_TierImg"
                           />
                         </p>
-                        <p>
-                          플레이수 : {freeRankData.wins + freeRankData.losses}
-                        </p>
-                        <p>승 : {freeRankData.wins}</p>
-                        <p>패 : {freeRankData.losses}</p>
+                        <p>{freeRankData.wins}승/{freeRankData.losses}패</p>
                         <p>
                           승률 :{" "}
                           {WinPercent(freeRankData.wins, freeRankData.losses)}%
@@ -128,10 +132,8 @@ function SearchUserData() {
                     ) : (
                       <h1>전적 없음.</h1>
                     )}
-                  </div>
+                    </div>
                 </div>
-              </div>
-              
               <div className="SearchUserData_MatchContainer">
                 {searchMatchData}
               </div>
