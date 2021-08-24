@@ -49,7 +49,7 @@ export const GetUserMatchData = async (puuid) => {
 
     let matchId = data;
     
-    for (let cnt = 0; cnt < 2; cnt++) {
+    for (let cnt = 0; cnt < matchId.length; cnt++) {
       if(matchId[cnt] !== undefined){
         const CallData = await axios.get(
           `/lol/match/v5/matches/${matchId[cnt]}?api_key=${process.env.REACT_APP_API_KEY}`

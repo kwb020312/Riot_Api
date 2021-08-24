@@ -21,7 +21,6 @@ body{
     max-width: 1440px;
     border: #1d59a7 1px solid;
     padding: 10px;
-    height: 80vh;
     margin: 0 auto;
 }
 
@@ -114,4 +113,14 @@ body{
 .SearchUserData_Match{
     padding: 10px;
     border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+}
+.UserMatchData_matchInfo{
+    margin-right: 20px;
+}
+
+.UserMatchData_userPlayChampionImg{
+    width: 70px;
+    border-radius: 100%;
 }
