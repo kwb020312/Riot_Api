@@ -35,6 +35,7 @@ function ChampionInfo() {
           <div key={i}>
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/champion/${data[i].image.full}`}
+              alt="챔피언 이미지"
             ></img>
           </div>
         </Link>
