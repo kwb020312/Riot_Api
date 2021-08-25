@@ -9,7 +9,7 @@ import "../css/SearchUserData.css";
 function SearchUserData() {
   const { userName } = useParams();
   
-  const [ userNames,setUserNames] = useState();
+  const [ userNames,setUserNames] = useState("");
   const [userData, setUserData] = useState(null);
   const [soloRankData, setSoloRankData] = useState();
   const [freeRankData, setFreeRankData] = useState();
