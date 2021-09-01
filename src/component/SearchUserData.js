@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { TierImg } from "./tierImg";
 import UserMatchData from "./UserMatchData";
-import { GetData, GetUserInfoData, GetUserMatchData } from "../api";
+import { GetData, GetUserInfoData, GetUserMatchData } from "../api/api.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/SearchUserData.scss";
 import Spinner from "react-bootstrap/Spinner";
