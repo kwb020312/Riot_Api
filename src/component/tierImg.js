@@ -1,3 +1,4 @@
+import Unrank from "../img/Emblem_Unranked.png";
 import IRON from "../img/Emblem_Iron.png";
 import BRONZE from "../img/Emblem_Bronze.png";
 import SILVER from "../img/Emblem_Silver.png";
@@ -9,8 +10,8 @@ import GRANDMASTER from "../img/Emblem_Grandmaster.png";
 import CHELLENGER from "../img/Emblem_Challenger.png";
 
 export const TierImg = (tier) => {
-    
     switch(tier) {
+        case "unranked" : return Unrank;
         case "IRON" :  return IRON
         case "BRONZE" : return BRONZE
         case "SILVER" : return SILVER

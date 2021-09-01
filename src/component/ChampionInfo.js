@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import "../css/championInfo.css";
+import "../css/championInfo.scss";
 
 function ChampionInfo() {
   const [data, setData] = useState();
@@ -51,7 +51,11 @@ function ChampionInfo() {
       {loading ? (
         <>
         <div className="Main_Header">
-      <input
+            <button>커뮤니티</button>
+            <Link to="/champion">
+              <button>챔피언 목록</button>
+            </Link>
+            <input
               type="text"
               onChange={(e) => {
                 setUserName(e.target.value);
@@ -64,16 +68,13 @@ function ChampionInfo() {
               placeholder="사용자명"
               className="Main_searchUser_Input"
             />
-          <Link to="/champion">
-            <button>챔피언 목록</button>
-          </Link>
-          <button>커뮤니티</button>
-        </div>
+          </div>
         <div className="ChampionInfo">
           <div>
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/champion/${data.image.full}`}
-            ></img>
+              alt="챔피언 이미지"
+            />
             <h1>
               {data.name}({data.id})
             </h1>
@@ -118,22 +119,27 @@ function ChampionInfo() {
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/passive/${data.passive.image.full}`}
               title={`P ${data.passive.name}\n${data.passive.description}`}
+              alt="챔피언 패시브"
             />
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[0].image.full}`}
               title={`Q ${data.spells[0].name}\n${data.spells[0].description}`}
+              alt="챔피언 q스킬"
             />
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[1].image.full}`}
               title={`W ${data.spells[1].name}\n${data.spells[1].description}`}
+              alt="챔피언 w Skill"
             />
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[2].image.full}`}
               title={`E ${data.spells[2].name}\n${data.spells[2].description}`}
+              alt="챔피언 e Skill"
             />
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/spell/${data.spells[3].image.full}`}
               title={`R ${data.spells[3].name}\n${data.spells[3].description}`}
+              alt="챔피언 r Skill"
             />
           </div>
         </div>
