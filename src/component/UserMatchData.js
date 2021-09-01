@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ChampJson from "../json/champion.json";
 import SummonerSpell from "../json/summoner.json";
-import {GetSpellCode, GetSpellImg} from "../spellApi";
+import {GetSpellCode, GetSpellImg} from "../api/spellApi";
 import NoneItem from "../img/A6000000.png"
 
 function UserMatchData(props) {
@@ -220,7 +220,7 @@ function UserMatchData(props) {
                   className="UserMatchData_userPlayChampionImg"
                   src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${playChamp}.png`}
                 ></img>
-                </div>
+                
                 <div className="UserMatchData_UseSpellRuneContainer">
                   <div className="UserMatchData_SpellContainer">
                   {GetSpells()}
@@ -229,6 +229,7 @@ function UserMatchData(props) {
                   {GetRunes()}
                   </div>
                 </div> 
+                </div>
                 <p>{GetChampKOname(playChamp)}</p>
               </div>
               <div className="UserMatchData_userPlayKda">
