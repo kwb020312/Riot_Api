@@ -1,38 +1,222 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ChampJson from "../json/champion.json";
 
 function UserMatchData(props) {
+  const [playDate, setPlayDate] = useState();
+  const [playTime, setPlayTime] = useState();
+  const [gameWin, setGameWin] = useState();
+  const [KDA, setKDA] = useState([]);
+  const [playerData, setPlayerData] = useState();
+  const [totalSummorner, setTotalSummornor] = useState([]);
+  const [playChamp, setPlayChamp] = useState();
+  const [loading, setLoading] = useState(false);
+  let playWinTeam;
+
+  const userData = props.userData;
+  const matchData = props.matchData;
+
+  console.log(matchData);
+
+  const GetData = () => {
+    props.matchData.info.teams[0].win
+      ? (playWinTeam = props.matchData.info.teams[0].teamId)
+      : (playWinTeam = props.matchData.info.teams[1].teamId);
+
+    let summonerData = [];
+    {
+      matchData.info.participants.map((x, cnt) => {
+        summonerData.push(x);
+
+        if (x.summonerName === userData.name) {
+          {
+            setPlayerData(x);
+            console.log(x);
+            let KDAdata = [];
+            x.teamId === playWinTeam ? setGameWin(true) : setGameWin(false);
+            KDAdata.push(x.kills, x.deaths, x.assists);
+            setKDA(KDAdata);
+            setPlayChamp(x.championName);
+          }
+        }
+      });
+    }
+    setTotalSummornor(summonerData);
+    setLoading(true);
+  };
+
+  const GetChampKOname = (champName) => {
+    console.log(ChampJson["data"][champName]["name"]);
+    return ChampJson["data"][champName]["name"];
+  };
+
+  const GetSummonerDatas = (teamId) => {
+    let arrayData = [];
+    totalSummorner.map((content, count) => {
+      let summonerName = content.summonerName;
+      if (summonerName.length > 5) {
+        summonerName = summonerName.slice(0, 5) + "...";
+      }
+
+      if (content.teamId === teamId) {
+        arrayData.push(
+          <div className="UserMatchData_matchMember">
+            <img
+              src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${content.championName}.png`}
+              className="UserMatchData_matchMemberImg"
+              alt={content.championName}
+              // title={GetChampKOname(content.championName)}
+            ></img>
+            <p>{summonerName}</p>
+          </div>
+        );
+      }
+    });
+    return arrayData;
+  };
+
+  // 게임 시간, 게임플레이 날짜 구하는 함수
+  const GetTime = () => {
+    let dateTime = new Date(matchData.info.gameStartTimestamp);
+    let endTime = new Date(
+      matchData.info.gameStartTimestamp + matchData.info.gameDuration
+    );
+    let test = new Date();
+
+    let durationTime = endTime - dateTime;
+
+    let playSecond = Math.floor((durationTime % (1000 * 60)) / 1000);
+    let playMinute = Math.floor(
+      (durationTime % (1000 * 60 * 60)) / (1000 * 60)
+    );
+
+    setPlayTime(playMinute + "분" + playSecond + "초");
+
+    const betweenTime = Math.floor(
+      (test.getTime() - dateTime.getTime()) / 1000 / 60
+    );
+
+    if (betweenTime < 1) return "방금전";
+    if (betweenTime < 60) {
+      setPlayDate(betweenTime + "분전");
+      setPlayDate();
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+      setPlayDate(betweenTimeHour + "시간전");
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+      if (betweenTimeDay > 0) {
+        setPlayDate(betweenTimeDay + "일전");
+      }
+    }
+  };
+
+  const GetItemBuild = () => {
+    let itemData = [];
+
+    itemData.push(
+      playerData.item0,
+      playerData.item1,
+      playerData.item2,
+      playerData.item6,
+      playerData.item3,
+      playerData.item4,
+      playerData.item5
+    );
+
+    let itemImg = [];
+    itemData.map((x, cnt) => {
+      if (x > 0) {
+        itemImg.push(
+          <div className="UserMatchData_itemInfo">
+            <img
+              src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${x}.png`}
+              className="UserMatchData_itemImg"
+            ></img>
+          </div>
+        );
+      } else {
+        <div className="UserMatchData_itemInfo"></div>;
+      }
+    });
+
+    return itemImg;
+  };
+
+  useEffect(() => {
+    GetTime();
+    GetData();
+  }, []);
+
   return (
     <>
-      <div className="SearchUserData_Match">
-        {props.matchData.info.participants.map((x, cnt) => {
-          if (x.summonerName === props.userData.name) {
-            return (
-              <>
-                <div className="UserMatchData_matchInfo" key={cnt}>
-                  <p>
-                    {x.kills} / {x.deaths} / {x.assists}
-                  </p>
-                  <p>
-                    {props.matchData.info.teams.map((y) => {
-                      if (x.teamId === y.teamId) {
-                        if (y.win) {
-                          return "승리";
-                        } else {
-                          return "패배";
-                        }
-                      }
-                    })}
-                  </p>
-                </div>
+      {loading ? (
+        <>
+          <div
+            className={
+              gameWin ? "UserMatchData_WinMatch" : "UserMatchData_LoseMatch"
+            }
+          >
+            <div className="UserMatchData_matchInfoContainer">
+              <div className="UserMatchData_matchInfo">
+                <p>{gameWin ? "승리" : "패배"}</p>
+                <p>{playDate}</p>
+                <p>{playTime}</p>
+              </div>
+              <div className="UserMatchData_userPlayChampionImgContainer">
                 <img
                   className="UserMatchData_userPlayChampionImg"
-                  src={`http://ddragon.leagueoflegends.com/cdn/11.15.1/img/champion/${x.championName}.png`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${playChamp}.png`}
                 ></img>
-              </>
-            );
-          }
-        })}
-      </div>
+
+                <p>{GetChampKOname(playChamp)}</p>
+              </div>
+              <div className="UserMatchData_userPlayKda">
+                <p>
+                  {KDA[0]} / {KDA[1]} / {KDA[2]}
+                </p>
+                <p>{((KDA[0] + KDA[2]) / KDA[1]).toFixed(2)}:1 평점</p>
+              </div>
+              <div className="UserMatchData_userPlayInfo">
+                <p>레벨{playerData.championLevel}</p>
+                <p>
+                  {playerData.totalMinionsKilled}(
+                  {(playerData.totalMinionsKilled / parseInt(playTime)).toFixed(
+                    1
+                  )}
+                  )CS
+                </p>
+                <p>
+                  킬관여
+                  {Math.ceil(
+                    ((KDA[0] + KDA[2]) /
+                      (matchData.info.teams[
+                        playerData.teamId === 100 ? [0] : [1]
+                      ].objectives.champion.kills -
+                        1)) *
+                      100
+                  )}
+                  %
+                </p>
+              </div>
+            </div>
+            <div className="UserMatchData_ItemBuild">{GetItemBuild()}</div>
+            <div className="UserMatchData_togetherPlayMatch">
+              <div className="UserMatchData_RedMember">
+                {GetSummonerDatas(100)}
+              </div>
+              <div className="UserMatchData_BlueMember">
+                {GetSummonerDatas(200)}
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/main.css";
+import "../css/main.scss";
 
 function Main() {
   const [userName, setUserName] = useState("");

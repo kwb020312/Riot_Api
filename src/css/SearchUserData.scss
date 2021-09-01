@@ -1,0 +1,247 @@
+/* 모든 태그들 */
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+/* 바디 */
+body{
+    background-color: #C4DEFF		;
+}
+
+/* 유저 아이콘, 티어 아이콘 */
+.SearchUserData_TierImg{
+    width: 5vw;
+    height: 5vw;
+}
+
+.SearchUserData_userIconImg{
+    width: 100%;
+    height: 100%;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 15px;
+}
+
+/* 모든걸 묶고있는 컨테이너 */
+.SearchUserData_Container{
+    max-width: 1440px;
+    background-color: white;
+    border: #1d59a7 1px solid;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+/* 유저의 정보 컨테이너 */
+.SearchUserData_UserInfoContainer{
+    width: 100%;
+    max-width: 1200px;
+    max-height: 250px;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* 유저의 정보의 헤더 */
+.SearchUserData_UserNameIcon{
+    width: 100%;
+    align-self: flex-start;
+    max-width: 30%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* 유저의 정보의 내용 */
+.SearchUserData_UserInfo{
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.SearchUserData_UserInfo h1{
+    font-size: 1.2vw;
+}
+
+/* 유저의 정보의 내용의 텍스트 */
+.SearchUserData_UserInfo h1, p{
+    margin: 0;
+}
+
+/* 유저의 티어 컨테이너 */
+.SearchUserData_UserTierInfoContainer{
+    width: 100%;
+    height: 100%;
+    max-width: 68%;
+    margin: 0 auto;
+    display: flex;
+    background-color: #dee4ec;
+    border: #1d59a7 1px solid;
+    padding: 10px;
+
+}
+
+.SearchUserData_SoloTierInfo{
+    width: 50%;
+    text-align: center;
+ border-right: #1d59a7 1px solid;
+}
+
+.SearchUserData_TierInfo_header{
+    margin-bottom: 20px;
+}
+
+.SearchUserData_TierInfo_header h1{
+    font-size: 1.5vw;
+}
+
+.SearchUserData_TierInfo_content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.SearchUserData_TierInfo_img{
+    max-width: 48%;
+    width: 100%;
+}
+
+.SearchUserData_TierInfo_text{
+    margin: 10px;
+}
+
+.SearchUserData_TierInfo_text p{
+    font-size: 0.8vw;
+}
+
+
+.SearchUserData_FreeTierInfo{
+    text-align: center;
+    width: 50%;
+}
+
+/* 유저의 티어 정보 */
+.SearchUserData_UserTierInfo{
+    margin: 10px;
+}
+
+/* 유저의 티어 정보의 모든 얘들 */
+.SearchUserData_UserTierInfo *{
+    margin: 0;
+}
+
+/* 검색한유저가 없을을경우 */
+.SearchUserData_NoneUser{
+    text-align: center;
+}
+
+/* 정보 로딩  */
+.SearchUserData_Loading{
+    text-align: center;
+}
+
+/* 검색한 유저의 경기정보 컨테이너 */
+.SearchUserData_MatchContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    min-width: 200px;
+    margin: 0 auto;
+}
+
+.SearchUserData_playChamp{
+    width: 25%;
+    height: 515px;
+    border: 1px solid black;
+}
+
+.SearchUserData_userStatisticConatiner{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    max-width: 75%;
+    margin-left: 15px;
+}
+
+.SearchUserData_userStatistic{
+    width: 100%;
+    height: 300px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+}
+
+.UserMatchData_matchInfoContainer{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+.SearchUserData_matchInfo{
+    width: 100%;
+    min-height: 200px;
+    border: 1px solid black;
+}
+
+
+.UserMatchData_WinMatch{
+    padding: 10px;
+    background-color: #87CEFA;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+}
+
+.UserMatchData_LoseMatch{
+    padding: 10px;
+    background-color: #FF7493;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+}
+
+.UserMatchData_matchInfo{
+    min-width: 60px;
+    margin-right: 20px;
+}
+
+.UserMatchData_userPlayChampionImgContainer{
+    background-color: none;
+}
+
+.UserMatchData_userPlayChampionImg{
+    width: 4vw;
+    height: 4vw;
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.UserMatchData_togetherPlayMatch{
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    justify-content: center;
+}
+
+.UserMatchData_matchMember{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-self: center;
+    margin: 0px 5px 5px 0;
+    max-width: 80px;
+    min-width: 4vw;
+}
+
+.UserMatchData_matchMember p{
+    font-size: 10px;
+    
+}
+
+.UserMatchData_matchMemberImg{
+    width: 1.5vw;
+    max-width: 20px;
+    margin-right: 5px;
+}

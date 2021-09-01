@@ -2,12 +2,13 @@ import axios from "axios";
 
 // 유저의 id등나 이름 가져오기
 export const GetData = async (userName) => {
-  console.log(userName);
   try {
     const CallData = await axios.get(
       `/lol/summoner/v4/summoners/by-name/${userName}?api_key=${process.env.REACT_APP_API_KEY}`
     );
     const data = CallData.data;
+    
+    console.log(data);
 
     return data;
   } catch (error) {
@@ -21,6 +22,7 @@ export const GetUserInfoData = async (id) => {
     `/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_API_KEY}`
   );
   const data = CallData.data;
+
 
   let userRank = {};
 
@@ -41,11 +43,11 @@ export const GetUserMatchData = async (puuid) => {
     let matchData = [];
 
     const CallData = await axios.get(
-      `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${process.env.REACT_APP_API_KEY}`
+      `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10&api_key=${process.env.REACT_APP_API_KEY}`
     );
     const data = CallData.data;
-
-      console.log(data)
+    
+    console.log(data)
 
     let matchId = data;
     
@@ -57,6 +59,8 @@ export const GetUserMatchData = async (puuid) => {
   
         const data = CallData.data;
   
+        console.log(data);
+
         matchData.push(data);
       }
     }

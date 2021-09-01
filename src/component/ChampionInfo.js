@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import "../css/championInfo.css";
+import "../css/championInfo.scss";
 
 function ChampionInfo() {
   const [data, setData] = useState();
@@ -51,7 +51,11 @@ function ChampionInfo() {
       {loading ? (
         <>
         <div className="Main_Header">
-      <input
+            <button>커뮤니티</button>
+            <Link to="/champion">
+              <button>챔피언 목록</button>
+            </Link>
+            <input
               type="text"
               onChange={(e) => {
                 setUserName(e.target.value);
@@ -64,11 +68,7 @@ function ChampionInfo() {
               placeholder="사용자명"
               className="Main_searchUser_Input"
             />
-          <Link to="/champion">
-            <button>챔피언 목록</button>
-          </Link>
-          <button>커뮤니티</button>
-        </div>
+          </div>
         <div className="ChampionInfo">
           <div>
             <img
