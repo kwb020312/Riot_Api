@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { TierImg } from "./tierImg";
 import UserMatchData from "./UserMatchData";
 import { GetData, GetUserInfoData, GetUserMatchData } from "../api";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/SearchUserData.scss";
 import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
@@ -26,8 +26,6 @@ function SearchUserData() {
     return percent.toFixed(1);
   };
 
-
-
   const GetUserInfo = async () => {
     const data = await GetData(userName);
     setUserData(data);
@@ -36,7 +34,6 @@ function SearchUserData() {
       const datas = await GetUserInfoData(data.id);
       datas.solo ? setSoloRankData(datas.solo) : setSoloRankData();
       datas.free ? setFreeRankData(datas.free) : setFreeRankData();
-      
 
       const matchData = await GetUserMatchData(data.puuid);
       let matchInfo = [];
@@ -49,7 +46,7 @@ function SearchUserData() {
             matchInfo.push(
               <UserMatchData
                 key={cnt}
-                keyValue ={cnt}
+                keyValue={cnt}
                 matchData={matchData[cnt]}
                 userData={data}
               />
@@ -58,12 +55,10 @@ function SearchUserData() {
             <></>
           );
         }
-        
       }
-      
+
       setSearchMatchData(matchInfo);
-      
-  }
+    }
     setLoading(true);
   };
 
@@ -72,26 +67,26 @@ function SearchUserData() {
   }, []);
   return (
     <>
-    {/* 헤더 */}
-    <div className="Main_Header">
-            <button>커뮤니티</button>
-            <Link to="/champion">
-              <button>챔피언 목록</button>
-            </Link>
-            <input
-              type="text"
-              onChange={(e) => {
-                setUserNames(e.target.value);
-              }}
-              onKeyDown={(e) => {
-                if (e.keyCode === 13) {
-                  document.location.href = `/summoner/${userNames}`;
-                }
-              }}
-              placeholder="사용자명"
-              className="Main_searchUser_Input"
-            />
-          </div>
+      {/* 헤더 */}
+      <div className="Main_Header">
+        <button>커뮤니티</button>
+        <Link to="/champion">
+          <button>챔피언 목록</button>
+        </Link>
+        <input
+          type="text"
+          onChange={(e) => {
+            setUserNames(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.keyCode === 13) {
+              document.location.href = `/summoner/${userNames}`;
+            }
+          }}
+          placeholder="사용자명"
+          className="Main_searchUser_Input"
+        />
+      </div>
       {loading ? (
         <>
           {userData !== undefined ? (
@@ -136,7 +131,7 @@ function SearchUserData() {
                             </p>
                             <p className="SearchUserData_TierInfo_winPercent">
                               승률 :
-                              {WinPercent(
+                              {" " + WinPercent(
                                 soloRankData.wins,
                                 soloRankData.losses
                               )}
@@ -185,7 +180,7 @@ function SearchUserData() {
                             </p>
                             <p className="SearchUserData_TierInfo_winPercent">
                               승률 :
-                              {WinPercent(
+                              {" " +WinPercent(
                                 freeRankData.wins,
                                 freeRankData.losses
                               )}
@@ -241,8 +236,8 @@ function SearchUserData() {
         </>
       ) : (
         <>
-        <Spinner animation="border" />
-        Loading
+          <Spinner animation="border" />
+          Loading
         </>
       )}
     </>

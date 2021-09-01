@@ -19,6 +19,7 @@ body {
   position: sticky;
   top: 0px;
   width: 100%;
+  min-width: 1200px;
   height: 5vh;
   display: flex;
   flex-direction: row-reverse;
@@ -39,7 +40,7 @@ body {
   margin: 0 10px;
   cursor: pointer;
   padding: 10px;
-  font-size: 1vw;
+  font-size: 14px;
 }
 
 /* 전적 검색창 컨테이너 */
@@ -67,9 +68,9 @@ body {
   width: 100%;
   padding: 5px;
   min-width: 220px;
-  max-width: 20vw;
-  height: 3vh;
-  font-size: 1.5vw;
+  max-width: 300px;
+  height: 30px;
+  font-size: 15px;
   border: none;
   border-radius: 5px;
 }
@@ -81,7 +82,7 @@ input:focus {
 /* 전적 검색창 검색 버튼 */
 .Main_searchUser_button {
   margin-left: 10px;
-  width: 5vh;
+  width: 50px;
   height: 100%;
   padding: 5px;
   border: none;
