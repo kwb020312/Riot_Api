@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ChampJson from "../json/champion.json";
 import SummonerSpell from "../json/summoner.json";
-import {GetSpellCode, GetSpellImg} from "../api/spellApi";
-import NoneItem from "../img/A6000000.png"
+import { GetPriRunesData, GetSubRunesData } from "../api/runeApi";
+import { GetSpellCode, GetSpellImg } from "../api/spellApi";
+import NoneItem from "../img/A6000000.png";
 
 function UserMatchData(props) {
   const [playDate, setPlayDate] = useState();
@@ -50,8 +51,11 @@ function UserMatchData(props) {
 
   // 챔피언 한글이름
   const GetChampKOname = (champName) => {
-    console.log(ChampJson["data"][champName]["name"]);
-    return ChampJson["data"][champName]["name"];
+    if (champName === "FiddleSticks") {
+      return ChampJson["data"]["Fiddlesticks"]["name"];
+    } else {
+      return ChampJson["data"][champName]["name"];
+    }
   };
 
   // 소환사 이름및 정보 수집
@@ -64,17 +68,26 @@ function UserMatchData(props) {
       }
 
       let champName = content.championName;
-      champName = ChampJson["data"][champName]["id"];
+      if (champName === "FiddleSticks") {
+        champName = ChampJson["data"]["Fiddlesticks"]["id"];
+      } else {
+        champName = ChampJson["data"][champName]["id"];
+      }
 
       if (content.teamId === teamId) {
         arrayData.push(
-          <div className="UserMatchData_matchMember" onClick={() =>{document.location.href = `/summoner/${content.summonerName}`}}>
+          <div
+            className="UserMatchData_matchMember"
+            onClick={() => {
+              document.location.href = `/summoner/${content.summonerName}`;
+            }}
+          >
             <img
               src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${champName}.png`}
               className="UserMatchData_matchMemberImg"
               alt={content.championName}
-              // title={GetChampKOname(content.championName)}
-            ></img>
+            />
+            <span ></span>
             <p>{summonerName}</p>
           </div>
         );
@@ -86,34 +99,89 @@ function UserMatchData(props) {
   // 사용자가 사용한 룬
   const GetRunes = () => {
     let primaryRunes = playerData.perks.styles[0].selections[0].perk;
-    let subRunes = playerData.perks.styles[0].selections[1].perk;
+    let subRunes = playerData.perks.styles[1].selections[1].perk;
 
-    console.log(primaryRunes, subRunes)
-  }
+    let priRuneData = GetPriRunesData(primaryRunes);
+    let subRuneData = GetSubRunesData(subRunes);
+
+    // 룬 툴팁 잡다한 내용 삭제
+    priRuneData.longDesc = priRuneData.longDesc.replace(/<[^>]*>?/gm, '');
+
+    let runeImgData = [];
+
+    runeImgData.push(
+      <>
+        <div className="UserMatchData_matchUseRuneCon">
+          <img
+            className="UserMatchData_matchUsePriRune"
+            src={priRuneData.icon}
+            alt="룬 사진"
+          />
+            <span className="UserMatchData_matchUsePriRuneToolTip">
+            <span>{priRuneData.name}</span>
+            <span>{priRuneData.longDesc}</span>
+            </span>
+        </div>
+        <div className="UserMatchData_matchUseRuneCon">
+          <img
+            className="UserMatchData_matchUseSubRune"
+            src={subRuneData.icon}
+            alt="룬 사진"
+          />
+          <span className="UserMatchData_matchUseSubRuneToolTip">
+            <span>{subRuneData.name}</span>
+            </span>
+        </div>
+      </>
+    );
+
+    return runeImgData;
+  };
+
+  const ChampImg = () => {
+    if (playChamp === "FiddleSticks") {
+      return `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/Fiddlesticks.png`;
+    } else {
+      return `https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${playChamp}.png`;
+    }
+  };
 
   // 사용자가 사용한 스펠
-  const GetSpells = () =>{
+  const GetSpells = () => {
     let spellD = GetSpellCode(playerData.summoner1Id);
     let spellF = GetSpellCode(playerData.summoner2Id);
+
+    let spellDInfo = SummonerSpell["data"][spellD];
+    let spellFInfo = SummonerSpell["data"][spellF]
+
+    console.log(spellDInfo, spellFInfo)
 
     let getSpellArr = [];
 
     getSpellArr.push(
       <div className="UserMatchData_SpellInfo">
         <img
-        src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${spellD}.png`}
-        className="UserMatchData_SpellImg"
-        ></img>
+          src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${spellD}.png`}
+          className="UserMatchData_SpellImg"
+        />
+        <span className="UserMatchData_SpellFtoolTip">
+          <p>{spellDInfo.name+"쿨타임 : "+spellDInfo.cooldownBurn +"초"}</p>
+          <p>{spellDInfo.description}</p>
+        </span>
       </div>,
       <div className="UserMatchData_SpellInfo">
-      <img
-      src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${spellF}.png`}
-      className="UserMatchData_SpellImg"
-      ></img>
-    </div>
-    )
-      return getSpellArr;
-  }
+        <img
+          src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${spellF}.png`}
+          className="UserMatchData_SpellImg"
+        />
+        <span className="UserMatchData_SpellFtoolTip">
+          <p>{spellFInfo.name+"쿨타임 : "+spellFInfo.cooldownBurn}</p>
+          <p>{spellFInfo.description}</p>
+        </span>
+      </div>
+    );
+    return getSpellArr;
+  };
 
   // 게임 시간, 게임플레이 날짜 구하는 함수
   const GetTime = () => {
@@ -181,13 +249,10 @@ function UserMatchData(props) {
         );
       } else {
         itemImg.push(
-        <div className="UserMatchData_itemInfo">
-          <img
-              src={NoneItem}
-              className="UserMatchData_itemImg"
-            ></img>
-        </div>
-        )
+          <div className="UserMatchData_itemInfo">
+            <img src={NoneItem} className="UserMatchData_itemImg"></img>
+          </div>
+        );
       }
     });
 
@@ -210,31 +275,31 @@ function UserMatchData(props) {
           >
             <div className="UserMatchData_matchInfoContainer">
               <div className="UserMatchData_matchInfo">
-                <p>{gameWin ? "승리" : "패배"}</p>
-                <p>{playDate}</p>
-                <p>{playTime}</p>
+                <p className={gameWin ? "UserMatchData_matchWin" : "UserMatchData_matchLose"}>{gameWin ? "승리" : "패배"}</p>
+                <p className="UserMatchData_matchDate">{playDate}</p>
+                <p className="UserMatchData_matchTime">{playTime}</p>
               </div>
               <div className="UserMatchData_userPlayContainer">
                 <div className="UserMatchData_userPlayChampion">
-                <img
-                  className="UserMatchData_userPlayChampionImg"
-                  src={`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${playChamp}.png`}
-                ></img>
-                
-                <div className="UserMatchData_UseSpellRuneContainer">
-                  <div className="UserMatchData_SpellContainer">
-                  {GetSpells()}
+                  <img
+                    className="UserMatchData_userPlayChampionImg"
+                    src={ChampImg()}
+                  ></img>
+
+                  <div className="UserMatchData_UseSpellRuneContainer">
+                    <div className="UserMatchData_SpellContainer">
+                      {GetSpells()}
+                    </div>
+                    <div className="UserMatchData_RuneContainer">
+                      {GetRunes()}
+                    </div>
                   </div>
-                  <div className="UserMatchData_RuneContainer">
-                  {GetRunes()}
-                  </div>
-                </div> 
                 </div>
                 <p>{GetChampKOname(playChamp)}</p>
               </div>
               <div className="UserMatchData_userPlayKda">
                 <p>
-                  {KDA[0]} / {KDA[1]} / {KDA[2]}
+                  {KDA[0]} / <span style={{color:"red"}}>{KDA[1]}</span> / {KDA[2]}
                 </p>
                 <p>{((KDA[0] + KDA[2]) / KDA[1]).toFixed(2)}:1 평점</p>
               </div>
@@ -261,9 +326,7 @@ function UserMatchData(props) {
                 </p>
               </div>
               <div className="UserMatchData_ItemBuildContainer">
-                <div className="UserMatchData_ItemBuild">
-                {GetItemBuild()}
-                </div>
+                <div className="UserMatchData_ItemBuild">{GetItemBuild()}</div>
               </div>
             </div>
             <div className="UserMatchData_togetherPlayMatch">

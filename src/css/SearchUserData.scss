@@ -1,404 +1,484 @@
 /* 모든 태그들 */
-*{
-    padding: 0px;
-    margin: 0px;
+* {
+  padding: 0px;
+  margin: 0px;
 }
 
 /* 바디 */
-body{
-    background-color: #C4DEFF		;
+body {
+  background-color: #c4deff;
 }
 
 /* 티어 아이콘 */
-.SearchUserData_TierImg{
-    width: 80px;
-    height: 80px;
+.SearchUserData_TierImg {
+  width: 80px;
+  height: 80px;
 }
 
 // 유저 아이콘
-.SearchUserData_userIconImg{
-    width: 100%;
-    height: 100%;
-    max-width: 100px;
-    max-height: 100px;
-    border-radius: 15px;
+.SearchUserData_userIconImg {
+  width: 100%;
+  height: 100%;
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 15px;
 }
 
 /* 모든걸 묶고있는 컨테이너 */
-.SearchUserData_Container{
-    min-width: 1000px;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border: #1d59a7 1px solid;
-    padding: 10px;
-    margin: 0 auto;
+.SearchUserData_Container {
+  min-width: 1000px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: #1d59a7 1px solid;
+  padding: 10px;
+  margin: 0 auto;
 }
 
 /* 유저의 정보 컨테이너 */
-.SearchUserData_UserInfoContainer{
-    width: 100%;
-    min-height: 150px;
-    margin: 0 auto 20px;
-    display: flex;
-    flex-direction: row;
+.SearchUserData_UserInfoContainer {
+  width: 100%;
+  min-height: 150px;
+  margin: 0 auto 20px;
+  display: flex;
+  flex-direction: row;
 }
 
 /* 유저의 정보의 헤더 */
-.SearchUserData_UserNameIcon{
-    width: 50%;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex: 1;
+.SearchUserData_UserNameIcon {
+  width: 50%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex: 1;
 }
 
 /* 유저의 정보의 내용 */
-.SearchUserData_UserInfo{
-    margin-left: 50px;
-    display: flex;
-    flex-direction: column;
+.SearchUserData_UserInfo {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 // 유저의 이름
-.SearchUserData_UserInfo h1{
-    font-size: 25px;
+.SearchUserData_UserInfo h1 {
+  font-size: 25px;
 }
 
 /* 유저의 정보의 내용의 텍스트 */
-.SearchUserData_UserInfo h1, p{
-    margin: 0;
+.SearchUserData_UserInfo h1,
+p {
+  margin: 0;
 }
 
 /* 유저의 티어 컨테이너 */
-.SearchUserData_UserTierInfoContainer{
-    width: 50%;
-    margin-left: auto;
-    max-width: 50%;
-    display: flex;
-    background-color: #dee4ec;
-    border: #1d59a7 1px solid;
-    padding: 10px;
+.SearchUserData_UserTierInfoContainer {
+  width: 50%;
+  margin-left: auto;
+  max-width: 50%;
+  display: flex;
+  background-color: #dee4ec;
+  border: #1d59a7 1px solid;
+  padding: 10px;
 }
 
 // 유저의 솔로 랭크 티어
-.SearchUserData_SoloTierInfo{
-    width: 50%;
-    text-align: center;
- border-right: #1d59a7 1px solid;
+.SearchUserData_SoloTierInfo {
+  width: 50%;
+  text-align: center;
+  border-right: #1d59a7 1px solid;
 }
 
 // 유저의 솔로 랭크 헤더
-.SearchUserData_TierInfo_header{
-    margin-bottom: 20px;
+.SearchUserData_TierInfo_header {
+  margin-bottom: 20px;
 }
 
 // 유저의  랭크 헤더 텍스트
-.SearchUserData_TierInfo_header h1{
-    font-size: 20px;
+.SearchUserData_TierInfo_header h1 {
+  font-size: 20px;
 }
 
 // 유저의  랭크 내영
-.SearchUserData_TierInfo_content{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.SearchUserData_TierInfo_content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 // 유저의  랭크 티어 사진
-.SearchUserData_TierInfo_img{
-    max-width: 48%;
-    width: 100%;
+.SearchUserData_TierInfo_img {
+  max-width: 48%;
+  width: 100%;
 }
 
 // // 유저의 랭크 텍스트
-.SearchUserData_TierInfo_text{
-    margin: 10px;
+.SearchUserData_TierInfo_text {
+  margin: 10px;
 }
 
 // 유저의 랭크 설명
-.SearchUserData_TierInfo_text p{
-    font-size: 12px;
+.SearchUserData_TierInfo_text p {
+  font-size: 12px;
 }
 
 // 유저의 자유 랭크 영역
-.SearchUserData_FreeTierInfo{
-    text-align: center;
-    width: 50%;
+.SearchUserData_FreeTierInfo {
+  text-align: center;
+  width: 50%;
 }
 
 /* 유저의 티어 정보 */
-.SearchUserData_UserTierInfo{
-    margin: 10px;
+.SearchUserData_UserTierInfo {
+  margin: 10px;
 }
 
 /* 유저의 티어 정보의 모든 얘들 */
-.SearchUserData_UserTierInfo *{
-    margin: 0;
+.SearchUserData_UserTierInfo * {
+  margin: 0;
 }
 
 /* 검색한유저가 없을을경우 */
-.SearchUserData_NoneUser{
-    text-align: center;
+.SearchUserData_NoneUser {
+  text-align: center;
 }
 
 /* 정보 로딩  */
-.SearchUserData_Loading{
-    text-align: center;
+.SearchUserData_Loading {
+  text-align: center;
 }
 
 /* 검색한 유저의 경기정보 컨테이너 */
-.SearchUserData_MatchContainer{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    max-width: 1200px;
-    min-width: 200px;
-    margin: 0 auto;
-    flex: 1;
+.SearchUserData_MatchContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+  min-width: 200px;
+  margin: 0 auto;
+  flex: 1;
 }
 
 // 유저가 자주 사용한 챔프
-.SearchUserData_playChamp{
-    width: 25%;
-    height: 515px;
-    border: 1px solid black;
+.SearchUserData_playChamp {
+  width: 25%;
+  height: 515px;
+  border: 1px solid black;
 }
 
 // 유저의 통계 컨테이너
-.SearchUserData_userStatisticConatiner{
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    max-width: 75%;
-    height: 100%;
-    margin-left: 15px;
+.SearchUserData_userStatisticConatiner {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  max-width: 75%;
+  height: 100%;
+  margin-left: 15px;
 }
 
 // 유저의 통계
-.SearchUserData_userStatistic{
-    width: 100%;
-    height: 300px;
-    margin-bottom: 15px;
-    border: 1px solid black;
+.SearchUserData_userStatistic {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 15px;
+  border: 1px solid black;
 }
 
 // 유저의 경기 정보 컨테이너
-.UserMatchData_matchInfoContainer{
-    width: 80%;
-    display: flex;
-    flex-direction: row;
+.UserMatchData_matchInfoContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
 }
 
 // 유저 경기정보가 담길 곳
-.SearchUserData_matchInfo{
-    width: 100%;
-    min-height: 200px;
+.SearchUserData_matchInfo {
+  width: 100%;
+  min-height: 200px;
 }
 
 // 유저가 이겼을때
-.UserMatchData_WinMatch{
-    padding: 5px;
-    background-color: #87CEFA;
-    border: 1px solid #0AC9FF;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 5px;
+.UserMatchData_WinMatch {
+  padding: 5px;
+  background-color: #87cefa;
+  border: 1px solid #0ac9ff;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
 }
 
 // 유저가 졌을때
-.UserMatchData_LoseMatch{
-    padding: 5px;
-    background-color: #FF7493;
-    border: 1px solid #FF607F;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 5px;
+.UserMatchData_LoseMatch {
+  padding: 5px;
+  background-color: #ff7493;
+  border: 1px solid #ff607f;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
 }
 
 // 경기 시간, 승리 정보
-.UserMatchData_matchInfo{
-    width: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 60px;
+.UserMatchData_matchInfo {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
 }
 
 // 경기 시간, 승리 정보 텍스트
-.UserMatchData_matchInfo p{
-    font-size: 13px
+.UserMatchData_matchWin{
+    font-size: 13px;
+    font-weight: bold;
+    color : #1EA4FF	;
 }
 
+// 경기 시간, 패배 정보 텍스트
+.UserMatchData_matchLose{
+    font-size: 13px;
+    font-weight: bold;
+    color : #CD1F48	;
+}
+
+.UserMatchData_matchInfo p{
+    font-size: 13px;
+}
+
+
+
 // 유저가 플레이한 챔피언, 스펠, 룬
-.UserMatchData_userPlayContainer{
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.UserMatchData_userPlayContainer {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 // 유저가 경기에 사용한 챔피언 영역
-.UserMatchData_userPlayChampion{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 8px;
+.UserMatchData_userPlayChampion {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 // 유저가 경기에 사용한 챔피언 이미지
-.UserMatchData_userPlayChampionImg{
-    width: 50px;
-    height: 50px;
-    max-width: 50px;
-    max-height: 50px;
-    object-fit: cover;
-    border-radius: 100%;
+.UserMatchData_userPlayChampionImg {
+  width: 50px;
+  height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: cover;
+  border-radius: 100%;
 }
 
 // 유저가 경기에 사용한 챔피언 이름
 .UserMatchData_userPlayContainer p {
-    font-size: 12px;
-    font-weight: bold;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 // 유저가 경기에 사용한 룬과 스펠
-.UserMatchData_UseSpellRuneContainer{
-    margin-left: 8px;
-    display: flex;
-    flex-direction: row;
+.UserMatchData_UseSpellRuneContainer {
+  width: 100%;
+  margin-left: 8px;
+  display: flex;
+  flex-direction: row;
 }
 
 // 유저가 사용한 스펠 컨테이너
-.UserMatchData_SpellContainer{
-    width: 50%;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.UserMatchData_SpellContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 // 유저가 사용한 스펠 영역
-.UserMatchData_SpellInfo{
-    width: 20px;
-    height: 20px;
-    margin-bottom: 5px;
+.UserMatchData_SpellInfo {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.UserMatchData_SpellInfo .UserMatchData_SpellDtoolTip,
+.UserMatchData_SpellInfo .UserMatchData_SpellFtoolTip {
+  visibility: hidden;
+  max-width: 350px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+}
+
+.UserMatchData_SpellInfo:hover .UserMatchData_SpellDtoolTip {
+  visibility: visible;
+}
+
+.UserMatchData_SpellInfo:hover .UserMatchData_SpellFtoolTip {
+  visibility: visible;
+}
+
+.UserMatchData_matchUseRuneCon {
+  .UserMatchData_matchUsePriRune {
+    background-color: black;
+    border-radius: 100%;
+  }
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 // 유저가 사용한 스펠 이미지
-.UserMatchData_SpellImg{
-    width: 100%;
-    height: 100%;
+.UserMatchData_SpellImg,
+.UserMatchData_matchUsePriRune {
+  border-radius: 25%;
+  width: 100%;
+  height: 100%;
 }
 
+.UserMatchData_matchUseSubRune {
+  border-radius: 10%;
+  width: 70%;
+  height: 70%;
+}
+
+.UserMatchData_matchUseRuneCon .UserMatchData_matchUsePriRuneToolTip,
+.UserMatchData_matchUseRuneCon .UserMatchData_matchUseSubRuneToolTip {
+    visibility: hidden;
+    max-width: 350px;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+}
+
+.UserMatchData_matchUseRuneCon:hover .UserMatchData_matchUsePriRuneToolTip {
+  visibility: visible;
+}
+
+.UserMatchData_matchUseRuneCon:hover .UserMatchData_matchUseSubRuneToolTip {
+  visibility: visible;
+}
 
 // 유저의 KDA
-.UserMatchData_userPlayKda{
-    width: 15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.UserMatchData_userPlayKda {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 // 유저의 KDA텍스트
-.UserMatchData_userPlayKda p{
-    font-size: 15px;
+.UserMatchData_userPlayKda p {
+  font-size: 15px;
 }
 
 // 유저가 경기에서 레벨, 미니언 처치수, 킬관여율 표기
-.UserMatchData_userPlayInfo{
-    width: 15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.UserMatchData_userPlayInfo {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 // 유저가 경기에서 레벨, 미니언 처치수, 킬관여율 텍스트
-.UserMatchData_userPlayInfo p{
-    font-size: 12px;
+.UserMatchData_userPlayInfo p {
+  font-size: 12px;
 }
 
 // 유저가 경기에서 사용한 아이템 컨테이너
-.UserMatchData_ItemBuildContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 20%;
+.UserMatchData_ItemBuildContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
 }
 
 // 유저가 경기에서 사용한 아이템 영역
-.UserMatchData_ItemBuild{
-    width: 100px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.UserMatchData_ItemBuild {
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 // 유저가 경기에서 사용한 아이템 이미지 영역
-.UserMatchData_itemInfo{
-    display: inline-block;
-    margin-right: 2px;
-    width: 22px;
+.UserMatchData_itemInfo {
+  display: inline-block;
+  margin-right: 2px;
+  width: 22px;
 }
 
 // 유저가 경기에서 사용한 아이템 이미지
-.UserMatchData_itemImg{
-    margin: 0;
-    padding: 0;
-    max-width: 22px;
-    max-height: 22px;
-
+.UserMatchData_itemImg {
+  margin: 0;
+  padding: 0;
+  max-width: 22px;
+  max-height: 22px;
+  border-radius: 10%;
 }
 
 // 경기에 참여한 유저들
-.UserMatchData_togetherPlayMatch{
-    display: flex;
-    flex-direction: row;
-    width: 25%;
-    justify-content: center;
+.UserMatchData_togetherPlayMatch {
+  display: flex;
+  flex-direction: row;
+  width: 25%;
+  justify-content: center;
 }
 
 // 경기에 참여한 레드팀 유저
-.UserMatchData_RedMember{
-    width: 50%;
+.UserMatchData_RedMember {
+  width: 50%;
 }
 
 // 경기에 참여한 블루팀 유저
-.UserMatchData_BlueMember{
-    width: 50%;
+.UserMatchData_BlueMember {
+  width: 50%;
 }
 
 // 경기에 참여한 유저들의 영역
-.UserMatchData_matchMember{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-self: center;
-    margin: 0px 5px 3px 0;
-    max-width: 100px;
-    cursor: pointer;
+.UserMatchData_matchMember {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: center;
+  margin: 0px 5px 3px 0;
+  max-width: 100px;
+  cursor: pointer;
 }
 
 // 경기에 참여한 유저들의 이름
-.UserMatchData_matchMember p{
-    font-size: 10px;
-    overflow: hidden;
+.UserMatchData_matchMember p {
+  font-size: 10px;
+  overflow: hidden;
 }
 
 //  경기에 참여한 유저들의 챔피언 이미지
-.UserMatchData_matchMemberImg{
-    width: 15px;
-    max-width: 20px;
-    margin-right: 5px;
+.UserMatchData_matchMemberImg {
+  width: 15px;
+  max-width: 20px;
+  margin-right: 5px;
 }
-

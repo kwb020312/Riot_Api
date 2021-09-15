@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export const GetSpellCode = (spellCode) => {
   switch (spellCode) {
       //방어막
