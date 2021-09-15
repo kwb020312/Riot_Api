@@ -1,22 +1,43 @@
 import RuneJson from "../json/runesReforged.json"
 
-export const GetPriRunesImg = (runeId) =>{
-    let runeKindId = 0;
-
-    switch(runeId){
-        case runeId > 8100 && runeId <8200 : runeKindId = 8100;
-        break;
-        case runeId > 8300 && runeId <8400 : runeKindId = 8300;
-        break;
-        case runeId > 8000 && runeId <8100 : runeKindId = 8000;
-        break;
-        case runeId > 8200 && runeId <8300 : runeKindId = 8200;
-        break;
-        case runeId > 8400 && runeId <8500 : runeKindId = 8400;
-        break;
+export const GetPriRunesData =  (primaryRunes) =>{
+    const GetRuneInfo= (ids) => {
+        for(let cnt2 = 0; cnt2 < ids["slots"][0]["runes"].length ; cnt2++){
+            if(ids["slots"][0]["runes"][cnt2]["id"] === primaryRunes){
+                return ids["slots"][0]["runes"][cnt2]
+            }
+        }
     }
 
+    const GetRuneId = (runeId) => {
+            console.log(runeId)
+            if(runeId > 8100 && runeId <8200 || runeId === 9923){
+                return RuneJson[0];
+            }else if(runeId > 8300 && runeId <8400){
+                return RuneJson[1];
+            }else if(runeId > 8400 && runeId <8500){
+                return RuneJson[3];
+            }else if(runeId > 8200 && runeId <8300){
+                return RuneJson[4];
+            }else{
+                return RuneJson[2];
+            }
+    }
 
-    let runeImgPath = RuneJson[runeKindId]["slots"][0][runes][0]["id"]
-    import Img from `${runeId}`
+    return GetRuneInfo(GetRuneId(primaryRunes))
+
+}
+
+export const GetSubRunesData = (subRunes) => {
+        if(subRunes > 8100 && subRunes <8200 || subRunes === 9923){
+            return RuneJson[0];
+        }else if(subRunes > 8300 && subRunes <8400){
+            return RuneJson[1];
+        }else if(subRunes > 8400 && subRunes <8500){
+            return RuneJson[3];
+        }else if(subRunes > 8200 && subRunes <8300){
+            return RuneJson[4];
+        }else{
+            return RuneJson[2]; 
+        }
 }
